@@ -155,7 +155,6 @@
       if (entry) {
         if (entry.status === "✓" || entry.status === "✔" || entry.status === "✔️" || entry.status.toLowerCase() === "true") {
           result.innerHTML = "✅ <span style='color: green;'>Registration confirmed.</span>";
-          telegramMessage.innerHTML = "";
         } else {
           result.innerHTML = "❌ <span style='color: red;'>Registration not found.</span>";
           telegramMessage.innerHTML = `
