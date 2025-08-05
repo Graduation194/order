@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jacket Registration Confirmation</title>
+  <title>Jacket Registration Status</title>
   <style>
     :root {
       --main-color: #371f28;
@@ -112,10 +112,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Jacket Registration Confirmation</h1>
+    <h1>Jacket Registration Status</h1>
     <p class="description">
-      This page allows you to confirm your jacket registration.<br>
-      Please enter your <strong>ID Number</strong> to check your status.
+      This page allows you to <strong>check the status</strong> of your jacket registration.<br>
     </p>
 
     <input type="text" id="seatInput" placeholder="Enter your ID Number" />
@@ -165,7 +164,7 @@
           `;
         }
       } else {
-        result.innerHTML = "🚫 <span style='color: #a00;'>تسجيلك لم يتم. تقدر تتواصل معنا: <a href='https://t.me/Graduation194' target='_blank'>Telegram</a></span>";
+        result.innerHTML = `🚫 <span style='color: #a00;'>Your registration was not found. You can contact us via <a href='https://t.me/Graduation194' target='_blank'>Telegram</a>.</span>`;
         telegramMessage.innerHTML = `
           📩 If you didn’t receive a confirmation email (order number), a second round of emails will be sent this month to resolve the issue.<br><br>
           📢 For assistance or inquiries, contact us via <a href='https://t.me/Graduation194' target='_blank'>Telegram</a>.
