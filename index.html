@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jacket Registration Confirmation</title>
+  <style>
+    :root {
+      --main-color: #371f28;
+      --accent-color: #6e3b4f;
+      --text-color: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--main-color), var(--accent-color));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 16px;
+      max-width: 450px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: var(--main-color);
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 25px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--main-color);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .note {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .note a {
+      color: var(--accent-color);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .note a:hover {
+      text-decoration: underline;
+    }
+
+    .credit {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 20px; }
+      .description, .note { font-size: 14px; }
+      input, button { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Jacket Registration Confirmation</h1>
+    <p class="description">
+      This website is created to confirm your jacket registration.<br>
+      Please enter your seat number to check your status.
+    </p>
+
+    <input type="text" id="seatInput" placeholder="Enter your seat number" />
+    <button onclick="checkSeat()">Check</button>
+    <p id="result"></p>
+
+    <div class="note">
+      📩 For students who faced issues receiving the email (<strong>order number</strong>),<br>
+      a second round of email notifications will be sent this month.<br><br>
+      📢 Stay updated through our <a href="https://t.me/+a0dYfbcyHrA3OTlh" target="_blank">Telegram Channel</a>.
+    </div>
+
+    <div class="credit">Programmed by Albara</div>
+  </div>
+
+  <script>
+    let data = [];
+
+    fetch('data.json')
+      .then(response => response.json())
+      .then(json => data = json)
+      .catch(error => {
+        console.error("Failed to load data.json", error);
+        data = null;
+      });
+
+    function checkSeat() {
+      const seatNumber = document.getElementById("seatInput").value.trim();
+      const result = document.getElementById("result");
+
+      if (!data) {
+        result.innerHTML = "⚠️ <span style='color: gray;'>Unable to check registration. Please try again later.</span>";
+        return;
+      }
+
+      const entry = data.find(item => item.seat_number === seatNumber);
+
+      if (entry) {
+        if (entry.status === "✓" || entry.status === "✔" || entry.status === "✔️" || entry.status.toLowerCase() === "true") {
+          result.innerHTML = "✅ <span style='color: green;'>Registration confirmed.</span>";
+        } else {
+          result.innerHTML = "❌ <span style='color: red;'>Registration not found.</span>";
+        }
+      } else {
+        result.innerHTML = "🚫 <span style='color: #a00;'>Seat number not found.</span>";
+      }
+    }
+  </script>
+</body>
+</html>
