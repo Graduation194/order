@@ -122,7 +122,7 @@
     <p id="result"></p>
 
     <div class="note" id="telegramMessage">
-      📩 If you didn’t receive a confirmation email (<strong>order number</strong>), a second round of emails will be sent this month to resolve the issue.
+      📩 If you didn’t receive a confirmation email (<strong>order number</strong>), a second round of emails will be sent this month to resolve the issue.<br><br>
       📢 Stay updated through our <a href="https://t.me/+a0dYfbcyHrA3OTlh" target="_blank">Telegram Channel</a>.
     </div>
 
@@ -158,14 +158,14 @@
         } else {
           result.innerHTML = "❌ <span style='color: red;'>Registration not found.</span>";
           telegramMessage.innerHTML = `
-            📩 If you didn’t receive a confirmation email (order number), a second round of emails will be sent this month to resolve the issue.<br><br>
+            📩 If you didn’t receive a confirmation email (<strong>order number</strong>), a second round of emails will be sent this month to resolve the issue.<br><br>
             📢 Stay updated through our <a href='https://t.me/+a0dYfbcyHrA3OTlh' target='_blank'>Telegram Channel</a>.
           `;
         }
       } else {
         result.innerHTML = `🚫 <span style='color: #a00;'>Your registration was not found. You can contact us via <a href='https://t.me/+a0dYfbcyHrA3OTlh' target='_blank'>Telegram</a>.</span>`;
         telegramMessage.innerHTML = `
-          📩 If you didn’t receive a confirmation email (order number), a second round of emails will be sent this month to resolve the issue.<br><br>
+          📩 If you didn’t receive a confirmation email (<strong>order number</strong>), a second round of emails will be sent this month to resolve the issue.<br><br>
           📢 Stay updated through our <a href='https://t.me/+a0dYfbcyHrA3OTlh' target='_blank'>Telegram Channel</a>.
         `;
       }
@@ -173,4 +173,3 @@
   </script>
 </body>
 </html>
-
