@@ -2,55 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jacket Registration Confirmation</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #371f28, #6e3b4f);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .container {
-      background-color: white;
-      padding: 30px 40px;
+      background-color: #fff;
+      padding: 25px 20px;
       border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
       max-width: 400px;
-      width: 90%;
+      box-sizing: border-box;
+      text-align: center;
     }
 
     h1 {
+      font-size: 22px;
       color: #371f28;
       margin-bottom: 10px;
     }
 
-    p.description {
+    .description {
+      font-size: 14px;
       color: #444;
-      font-size: 15px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     input[type="text"] {
       width: 100%;
       padding: 12px;
-      font-size: 16px;
+      font-size: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
       margin-bottom: 15px;
+      box-sizing: border-box;
     }
 
     button {
       width: 100%;
       padding: 12px;
+      font-size: 15px;
       background-color: #6e3b4f;
       color: white;
-      font-size: 16px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -64,20 +69,21 @@
     #result {
       margin-top: 15px;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .note {
-      margin-top: 25px;
-      font-size: 14px;
+      font-size: 13px;
       color: #555;
+      margin-top: 25px;
       line-height: 1.6;
+      text-align: left;
     }
 
     .note a {
       color: #6e3b4f;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
     }
 
     .note a:hover {
@@ -85,8 +91,9 @@
     }
 
     .credit {
+      text-align: center;
       font-size: 11px;
-      color: #999;
+      color: #aaa;
       margin-top: 20px;
     }
   </style>
@@ -95,7 +102,7 @@
   <div class="container">
     <h1>Jacket Registration Confirmation</h1>
     <p class="description">
-      This website is created to confirm your jacket registration. Please enter your seat number to check your status.
+      This website is created to confirm your jacket registration.<br>Please enter your seat number to check your status.
     </p>
 
     <input type="text" id="seatInput" placeholder="Enter your seat number" />
@@ -103,20 +110,18 @@
     <p id="result"></p>
 
     <div class="note">
-      📩 For students who faced issues receiving the email (<strong>order number</strong>), a second round of email notifications will be sent this month .<br /><br />
-      📢 Stay updated through our
-      <a href="https://t.me/+a0dYfbcyHrA3OTlh" target="_blank">Telegram Channel</a>
+      📩 For students who faced issues receiving the email (<strong>order number</strong>), a second round of email notifications will be sent this month.<br><br>
+      📢 Stay updated through our <a href="https://t.me/+a0dYfbcyHrA3OTlh" target="_blank">Telegram Channel</a>.
+    </div>
 
-      <p class="credit">
-        Programmed by Albara
-      </p>
+    <div class="credit">
+      Programmed by Albara
     </div>
   </div>
 
   <script>
     let data = [];
 
-    // Load data from data.json
     fetch('data.json')
       .then(response => response.json())
       .then(json => data = json)
@@ -127,11 +132,11 @@
 
     function checkSeat() {
       const seatNumber = document.getElementById("seatInput").value.trim();
+      const result = document.getElementById("result");
       const entry = data.find(item => item.seat_number === seatNumber);
 
-      const result = document.getElementById("result");
       if (entry) {
-        if (entry.status === "✓" || entry.status === "✔" || entry.status.toLowerCase() === "true") {
+        if (entry.status === "✓" || entry.status === "✔" || entry.status === "✔️" || entry.status.toLowerCase() === "true") {
           result.textContent = "✅ Registration confirmed.";
           result.style.color = "green";
         } else {
